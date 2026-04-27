@@ -6,28 +6,19 @@
 <title>✦ 塔罗占卜 ✦</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* ══════════════════════════════════════
-   CSS 部分：控制所有的外观和动画
-══════════════════════════════════════ */
-
-/* 全局颜色变量，改这里就能换整体配色 */
 :root {
-  --parchment: #f4ead5;       /* 羊皮纸色 */
-  --parchment-dark: #e8d5b0;  /* 深一点的羊皮纸 */
-  --ink: #2c1a0e;             /* 墨水深褐色 */
-  --ink-light: #5c3d1e;       /* 浅一点的褐色 */
-  --gold: #8b6914;            /* 金色 */
-  --gold-light: #c4a02a;      /* 亮金色 */
-  --red-accent: #7a1c1c;      /* 暗红装饰色 */
-  --card-back: #2c1a0e;       /* 牌背面颜色 */
-  --shadow: rgba(44,26,14,0.3);
+  --parchment: #f4ead5;
+  --parchment-dark: #e8d5b0;
+  --ink: #2c1a0e;
+  --ink-light: #5c3d1e;
+  --gold: #8b6914;
+  --gold-light: #c4a02a;
+  --red-accent: #7a1c1c;
+  --card-back: #2c1a0e;
 }
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+* { margin:0; padding:0; box-sizing:border-box; }
 body {
   background-color: #1a0f07;
-  /* 羊皮纸纹理感背景 */
   background-image:
     radial-gradient(ellipse at 20% 50%, rgba(139,105,20,0.08) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 20%, rgba(122,28,28,0.06) 0%, transparent 50%);
@@ -39,455 +30,179 @@ body {
   align-items: center;
 }
 
-/* ── 顶部标题区域 ── */
-.header {
-  text-align: center;
-  padding: 40px 20px 20px;
-  width: 100%;
-  max-width: 800px;
-}
+/* ── 标题 ── */
+.header { text-align:center; padding:36px 20px 16px; width:100%; max-width:900px; }
+.header-ornament { color:var(--gold-light); font-size:20px; letter-spacing:12px; display:block; margin-bottom:8px; }
+.header h1 { font-family:'Cinzel',serif; font-size:clamp(26px,5vw,50px); color:#f4ead5; font-weight:700; letter-spacing:6px; text-shadow:0 2px 12px rgba(196,160,42,0.4); }
+.header-line { width:200px; height:1px; background:linear-gradient(to right,transparent,var(--gold-light),transparent); margin:12px auto; }
+.header p { color:var(--parchment-dark); font-size:14px; opacity:.8; letter-spacing:2px; font-style:italic; }
 
-.header-ornament {
-  color: var(--gold-light);
-  font-size: 22px;
-  letter-spacing: 12px;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.header h1 {
-  font-family: 'Cinzel', serif;
-  font-size: clamp(28px, 5vw, 52px);
-  color: var(--parchment);
-  font-weight: 700;
-  letter-spacing: 6px;
-  text-shadow: 0 2px 12px rgba(196,160,42,0.4);
-}
-
-.header-line {
-  width: 200px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
-  margin: 14px auto;
-}
-
-.header p {
-  color: var(--parchment-dark);
-  font-size: 15px;
-  opacity: 0.8;
-  letter-spacing: 2px;
-  font-style: italic;
-}
-
-/* ── 主内容卡片容器（羊皮纸面板） ── */
+/* ── 主面板 ── */
 .main-panel {
   background: var(--parchment);
-  /* 羊皮纸内部纹理 */
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
   border: 2px solid var(--gold);
   border-radius: 4px;
-  box-shadow:
-    0 0 0 6px rgba(139,105,20,0.15),
-    0 8px 40px rgba(0,0,0,0.6),
-    inset 0 0 60px rgba(228,200,150,0.3);
-  width: 90%;
-  max-width: 700px;
-  margin: 20px auto;
-  padding: 40px 32px;
+  box-shadow: 0 0 0 6px rgba(139,105,20,0.12), 0 8px 40px rgba(0,0,0,0.6), inset 0 0 60px rgba(228,200,150,0.25);
+  width: 92%;
+  max-width: 780px;
+  margin: 16px auto 32px;
+  padding: 36px 32px;
   position: relative;
 }
+.main-panel::before { content:'✦'; position:absolute; top:12px; left:16px; color:var(--gold); font-size:18px; opacity:.5; }
+.main-panel::after  { content:'✦'; position:absolute; bottom:12px; right:16px; color:var(--gold); font-size:18px; opacity:.5; }
 
-/* 四角装饰 */
-.main-panel::before,
-.main-panel::after {
-  content: '✦';
-  position: absolute;
-  color: var(--gold);
-  font-size: 20px;
-  opacity: 0.6;
-}
-.main-panel::before { top: 12px; left: 16px; }
-.main-panel::after  { bottom: 12px; right: 16px; }
-
-/* ── 问题输入区 ── */
-.question-section {
-  margin-bottom: 28px;
-}
-
-.question-label {
-  display: block;
-  font-family: 'Cinzel', serif;
-  font-size: 13px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  margin-bottom: 12px;
-  text-align: center;
-}
-
+/* ── 问题输入 ── */
+.question-section { margin-bottom:24px; }
+.question-label { display:block; font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; color:var(--gold); margin-bottom:10px; text-align:center; }
 .question-input {
-  width: 100%;
-  padding: 14px 16px;
-  font-family: 'Noto Serif SC', serif;
-  font-size: 14px;
-  line-height: 1.8;
-  background: rgba(44,26,14,0.04);
-  border: 1px solid rgba(139,105,20,0.35);
-  border-radius: 4px;
-  color: var(--ink);
-  resize: none;
-  outline: none;
-  transition: border-color 0.2s, box-shadow 0.2s;
+  width:100%; padding:13px 15px;
+  font-family:'Noto Serif SC',serif; font-size:14px; line-height:1.8;
+  background:rgba(44,26,14,0.04); border:1px solid rgba(139,105,20,0.35);
+  border-radius:4px; color:var(--ink); resize:none; outline:none;
+  transition:border-color .2s,box-shadow .2s;
 }
+.question-input:focus { border-color:var(--gold-light); box-shadow:0 0 0 3px rgba(196,160,42,0.08); }
+.question-input::placeholder { color:var(--ink-light); opacity:.5; font-style:italic; }
+.question-hint { font-size:11px; color:var(--ink-light); opacity:.6; margin-top:6px; text-align:center; }
 
-.question-input:focus {
-  border-color: var(--gold-light);
-  box-shadow: 0 0 0 3px rgba(196,160,42,0.08);
+/* ── 牌阵选择 ── */
+.spread-section { margin-bottom:24px; }
+.spread-label { display:block; font-family:'Cinzel',serif; font-size:13px; letter-spacing:2px; color:var(--gold); margin-bottom:12px; text-align:center; }
+.spread-tabs { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
+.spread-tab {
+  padding:9px 20px; font-family:'Cinzel',serif; font-size:12px; letter-spacing:1.5px;
+  color:var(--ink-light); background:transparent;
+  border:1px solid rgba(139,105,20,0.4); border-radius:2px;
+  cursor:pointer; transition:all .2s;
 }
-
-.question-input::placeholder {
-  color: var(--ink-light);
-  opacity: 0.5;
-  font-style: italic;
+.spread-tab:hover { border-color:var(--gold-light); color:var(--ink); }
+.spread-tab.active {
+  background:var(--ink); color:var(--parchment);
+  border-color:var(--gold); box-shadow:0 2px 8px rgba(0,0,0,0.3);
 }
-
-.question-hint {
-  font-size: 11px;
-  color: var(--ink-light);
-  opacity: 0.6;
-  margin-top: 7px;
-  text-align: center;
-  letter-spacing: 0.5px;
-}
+.spread-desc { text-align:center; font-size:12px; color:var(--ink-light); opacity:.7; margin-top:10px; font-style:italic; }
 
 /* ── 抽牌按钮 ── */
 .draw-btn {
-  display: block;
-  margin: 0 auto 36px;
-  padding: 14px 48px;
-  font-family: 'Cinzel', serif;
-  font-size: 16px;
-  letter-spacing: 3px;
-  color: var(--parchment);
-  background: linear-gradient(135deg, var(--ink) 0%, var(--ink-light) 100%);
-  border: 1px solid var(--gold);
-  border-radius: 2px;
-  cursor: pointer;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.4), inset 0 1px 0 rgba(196,160,42,0.2);
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
+  display:block; margin:0 auto 32px;
+  padding:13px 44px; font-family:'Cinzel',serif; font-size:15px; letter-spacing:3px;
+  color:var(--parchment); background:linear-gradient(135deg,var(--ink) 0%,var(--ink-light) 100%);
+  border:1px solid var(--gold); border-radius:2px; cursor:pointer;
+  box-shadow:0 2px 12px rgba(0,0,0,0.4),inset 0 1px 0 rgba(196,160,42,0.2);
+  transition:all .3s ease;
 }
+.draw-btn:hover { transform:translateY(-1px); box-shadow:0 4px 20px rgba(139,105,20,0.4); letter-spacing:4px; }
+.draw-btn:active { transform:translateY(0); }
 
-.draw-btn::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, transparent 40%, rgba(196,160,42,0.1) 100%);
-}
+/* ── 牌阵布局容器 ── */
+.cards-area { margin-bottom:28px; }
 
-.draw-btn:hover {
-  background: linear-gradient(135deg, #3d2510 0%, var(--ink) 100%);
-  box-shadow: 0 4px 20px rgba(139,105,20,0.4), inset 0 1px 0 rgba(196,160,42,0.3);
-  transform: translateY(-1px);
-  letter-spacing: 4px;
-}
+/* 单张牌 */
+.layout-single { display:flex; justify-content:center; }
 
-.draw-btn:active { transform: translateY(0); }
+/* 三张牌 */
+.layout-three { display:flex; justify-content:center; gap:16px; flex-wrap:wrap; }
+.layout-three .card-slot { display:flex; flex-direction:column; align-items:center; gap:8px; }
+.slot-label { font-family:'Cinzel',serif; font-size:11px; letter-spacing:2px; color:var(--gold); text-align:center; }
 
-/* ── 翻牌动画区域 ── */
+/* 凯尔特十字 */
+.layout-celtic { display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:repeat(4,auto); gap:8px; max-width:560px; margin:0 auto; }
+.celtic-slot { display:flex; flex-direction:column; align-items:center; gap:6px; }
+.celtic-slot .slot-label { font-size:10px; }
+
+/* ── 单张翻牌组件 ── */
 .card-scene {
-  width: 200px;
-  height: 340px;
-  margin: 0 auto 32px;
-  /* 透视效果，让3D翻转看起来真实 */
-  perspective: 1000px;
+  width:130px; height:220px;
+  perspective:1000px;
 }
+.card-scene.large { width:160px; height:272px; }
 
 .card-flipper {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  /* 保留3D变换 */
-  transform-style: preserve-3d;
-  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  width:100%; height:100%; position:relative;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.4,0,.2,1);
 }
+.card-flipper.flipped { transform:rotateY(180deg); }
+.card-flipper.reversed-flipped { transform:rotateY(180deg) rotateZ(180deg); }
 
-/* 翻牌：旋转180度 */
-.card-flipper.flipped {
-  transform: rotateY(180deg);
-}
-
-/* 牌的正面和背面共同样式 */
 .card-front, .card-back {
-  position: absolute;
-  inset: 0;
-  border-radius: 8px;
-  /* 让背面在翻转时隐藏 */
-  backface-visibility: hidden;
-  overflow: hidden;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  position:absolute; inset:0; border-radius:6px;
+  backface-visibility:hidden; overflow:hidden;
+  box-shadow:0 6px 20px rgba(0,0,0,0.45);
 }
-
-/* 牌背面 */
 .card-back {
-  background: var(--card-back);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid var(--gold);
+  background:var(--card-back); border:1.5px solid var(--gold);
+  display:flex; align-items:center; justify-content:center;
 }
-
 .card-back-pattern {
-  width: 80%;
-  height: 80%;
-  border: 1px solid rgba(196,160,42,0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 60px;
-  color: rgba(196,160,42,0.5);
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 8px,
-    rgba(196,160,42,0.04) 8px,
-    rgba(196,160,42,0.04) 16px
-  );
+  width:80%; height:80%; border:1px solid rgba(196,160,42,0.3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:40px; color:rgba(196,160,42,0.4);
+  background:repeating-linear-gradient(45deg,transparent,transparent 6px,rgba(196,160,42,0.03) 6px,rgba(196,160,42,0.03) 12px);
+}
+.card-front { transform:rotateY(180deg); background:#fff; border:1.5px solid var(--gold); }
+.card-front img { width:100%; height:100%; object-fit:cover; display:block; }
+.img-fallback {
+  width:100%; height:100%; display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  background:linear-gradient(160deg,#2c1a0e,#1a0f07);
+  color:var(--gold-light); font-size:11px; text-align:center; padding:12px; gap:8px;
+}
+.img-fallback .card-symbol { font-size:36px; }
+
+/* 逆位标记 */
+.reversed-badge {
+  font-size:10px; letter-spacing:1px; color:var(--red-accent);
+  font-family:'Cinzel',serif; margin-top:2px;
 }
 
-/* 牌正面（翻转后的那一面）*/
-.card-front {
-  /* 翻转180度才能看到正面 */
-  transform: rotateY(180deg);
-  background: #fff;
-  border: 2px solid var(--gold);
-}
+/* ── 解读区域 ── */
+.divider { display:flex; align-items:center; gap:12px; margin:20px 0; color:var(--gold); font-size:14px; }
+.divider::before,.divider::after { content:''; flex:1; height:1px; background:linear-gradient(to right,transparent,var(--gold-light),transparent); }
 
-.card-front img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-/* 图片加载失败时的占位 */
-.card-front .img-fallback {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(160deg, #2c1a0e, #1a0f07);
-  color: var(--gold-light);
-  font-size: 13px;
-  text-align: center;
-  padding: 16px;
-  gap: 12px;
-}
-
-.card-front .img-fallback .card-symbol { font-size: 48px; }
-
-/* ── 牌名显示 ── */
-.card-name {
-  text-align: center;
-  font-family: 'Cinzel', serif;
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--ink);
-  letter-spacing: 3px;
-  margin-bottom: 8px;
-  min-height: 28px;
-  transition: opacity 0.5s;
-}
-
-.card-subtitle {
-  text-align: center;
-  font-size: 13px;
-  color: var(--gold);
-  letter-spacing: 2px;
-  margin-bottom: 24px;
-  min-height: 20px;
-}
-
-/* ── 分割线 ── */
-.divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin: 20px 0;
-  color: var(--gold);
-  font-size: 14px;
-}
-.divider::before, .divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold-light), transparent);
-}
-
-/* ── 含义解读区域 ── */
+/* 单张解读 */
 .meaning-box {
-  background: rgba(44,26,14,0.05);
-  border: 1px solid rgba(139,105,20,0.3);
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 20px;
-  min-height: 60px;
-  transition: opacity 0.5s;
+  background:rgba(44,26,14,0.05); border:1px solid rgba(139,105,20,0.3);
+  border-radius:4px; padding:18px; margin-bottom:16px;
 }
+.meaning-box h3 { font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; color:var(--gold); margin-bottom:10px; }
+.meaning-box p { font-size:14px; line-height:1.9; color:var(--ink-light); }
 
-.meaning-box h3 {
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: var(--gold);
-  margin-bottom: 10px;
+/* 多张解读 */
+.multi-meanings { display:flex; flex-direction:column; gap:12px; margin-bottom:16px; }
+.mini-meaning {
+  background:rgba(44,26,14,0.05); border:1px solid rgba(139,105,20,0.25);
+  border-radius:4px; padding:14px;
 }
+.mini-meaning h4 { font-family:'Cinzel',serif; font-size:10px; letter-spacing:2px; color:var(--gold); margin-bottom:6px; }
+.mini-meaning p { font-size:13px; line-height:1.8; color:var(--ink-light); }
 
-.meaning-box p {
-  font-size: 14px;
-  line-height: 1.9;
-  color: var(--ink-light);
-}
+/* AI解读 */
+.ai-box { background:linear-gradient(135deg,rgba(44,26,14,0.08),rgba(122,28,28,0.05)); border:1px solid rgba(122,28,28,0.3); border-radius:4px; padding:18px; }
+.ai-box h3 { font-family:'Cinzel',serif; font-size:11px; letter-spacing:3px; color:var(--red-accent); margin-bottom:10px; }
+.ai-box p { font-size:14px; line-height:1.9; color:var(--ink-light); font-style:italic; }
+.ai-loading { display:flex; gap:6px; align-items:center; color:var(--ink-light); font-size:13px; }
+.dot { width:6px; height:6px; border-radius:50%; background:var(--red-accent); animation:pulse 1.2s ease-in-out infinite; }
+.dot:nth-child(2) { animation-delay:.2s; }
+.dot:nth-child(3) { animation-delay:.4s; }
+@keyframes pulse { 0%,100%{opacity:.3;transform:scale(.8)} 50%{opacity:1;transform:scale(1.2)} }
 
-/* ── AI解读区域 ── */
-.ai-box {
-  background: linear-gradient(135deg, rgba(44,26,14,0.08), rgba(122,28,28,0.05));
-  border: 1px solid rgba(122,28,28,0.3);
-  border-radius: 4px;
-  padding: 20px;
-  min-height: 60px;
-}
+.footer { text-align:center; padding:20px; color:rgba(244,234,213,0.25); font-size:12px; letter-spacing:2px; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+.header { animation:fadeUp .8s ease both; }
+.main-panel { animation:fadeUp .8s ease .15s both; }
 
-.ai-box h3 {
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 3px;
-  color: var(--red-accent);
-  margin-bottom: 10px;
-}
-
-.ai-box p {
-  font-size: 14px;
-  line-height: 1.9;
-  color: var(--ink-light);
-  font-style: italic;
-}
-
-.ai-loading {
-  display: flex;
-  gap: 6px;
-  align-items: center;
-  color: var(--ink-light);
-  font-size: 13px;
-}
-
-.dot {
-  width: 6px; height: 6px;
-  border-radius: 50%;
-  background: var(--red-accent);
-  animation: pulse 1.2s ease-in-out infinite;
-}
-.dot:nth-child(2) { animation-delay: 0.2s; }
-.dot:nth-child(3) { animation-delay: 0.4s; }
-
-@keyframes pulse {
-  0%, 100% { opacity: 0.3; transform: scale(0.8); }
-  50% { opacity: 1; transform: scale(1.2); }
-}
-
-/* ── API Key 输入区 ── */
-.api-section {
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(139,105,20,0.2);
-}
-
-.api-section label {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 2px;
-  color: var(--gold);
-  margin-bottom: 8px;
-  font-family: 'Cinzel', serif;
-}
-
-.api-input-row {
-  display: flex;
-  gap: 8px;
-}
-
-.api-input {
-  flex: 1;
-  padding: 10px 14px;
-  font-family: 'Noto Serif SC', serif;
-  font-size: 13px;
-  background: rgba(44,26,14,0.05);
-  border: 1px solid rgba(139,105,20,0.4);
-  border-radius: 2px;
-  color: var(--ink);
-  outline: none;
-}
-
-.api-input:focus {
-  border-color: var(--gold-light);
-  box-shadow: 0 0 0 2px rgba(196,160,42,0.1);
-}
-
-.api-save-btn {
-  padding: 10px 18px;
-  font-family: 'Cinzel', serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--parchment);
-  background: var(--ink);
-  border: 1px solid var(--gold);
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.2s;
-  white-space: nowrap;
-}
-.api-save-btn:hover { background: var(--ink-light); }
-
-.api-hint {
-  font-size: 11px;
-  color: var(--ink-light);
-  opacity: 0.7;
-  margin-top: 6px;
-  line-height: 1.6;
-}
-
-/* ── 页脚 ── */
-.footer {
-  text-align: center;
-  padding: 24px;
-  color: rgba(244,234,213,0.3);
-  font-size: 12px;
-  letter-spacing: 2px;
-}
-
-/* ── 进场动画 ── */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-.header  { animation: fadeUp 0.8s ease both; }
-.main-panel { animation: fadeUp 0.8s ease 0.2s both; }
-
-/* ── 手机适配 ── */
-@media (max-width: 480px) {
-  .main-panel { padding: 28px 18px; }
-  .card-scene { width: 160px; height: 272px; }
+@media(max-width:520px){
+  .main-panel{padding:24px 14px;}
+  .card-scene{width:100px;height:170px;}
+  .card-scene.large{width:130px;height:220px;}
+  .layout-three{gap:8px;}
+  .layout-celtic{gap:4px;}
 }
 </style>
 </head>
 <body>
-
-<!-- ══════════════════════════════════════
-     HTML 部分：页面结构
-══════════════════════════════════════ -->
 
 <div class="header">
   <span class="header-ornament">· · ✦ · ·</span>
@@ -498,326 +213,420 @@ body {
 
 <div class="main-panel">
 
-  <!-- 问题输入区 -->
+  <!-- 问题输入 -->
   <div class="question-section">
     <label class="question-label">✦ 心中默念，写下你的问题</label>
     <textarea class="question-input" id="questionInput"
-      placeholder="例如：我最近的感情会有什么发展？
-例如：我应该换工作吗？
-例如：我现在的状态需要注意什么？"
+      placeholder="例如：我最近的感情会有什么发展？&#10;例如：我应该换工作吗？&#10;例如：我现在内心最需要关注什么？"
       maxlength="200" rows="3"></textarea>
-    <div class="question-hint">写下你真实的困惑或想知道的事，AI 将结合塔罗牌为你解读</div>
+    <div class="question-hint">写下你真实的困惑，AI 将结合牌阵为你深度解读</div>
+  </div>
+
+  <!-- 牌阵选择 -->
+  <div class="spread-section">
+    <label class="spread-label">◈ 选择牌阵</label>
+    <div class="spread-tabs">
+      <button class="spread-tab active" onclick="selectSpread('single')">单张牌</button>
+      <button class="spread-tab" onclick="selectSpread('three')">三张牌阵</button>
+      <button class="spread-tab" onclick="selectSpread('celtic')">凯尔特十字</button>
+    </div>
+    <div class="spread-desc" id="spreadDesc">当日指引 · 一张牌揭示今日核心能量</div>
   </div>
 
   <!-- 抽牌按钮 -->
-  <button class="draw-btn" onclick="drawCard()">✦ 抽一张牌 ✦</button>
+  <button class="draw-btn" id="drawBtn" onclick="drawCards()">✦ 开始占卜 ✦</button>
 
-  <!-- 3D翻牌区域 -->
-  <div class="card-scene">
-    <div class="card-flipper" id="flipper">
-      <!-- 牌背面 -->
-      <div class="card-back">
-        <div class="card-back-pattern">☽</div>
-      </div>
-      <!-- 牌正面 -->
-      <div class="card-front">
-        <img id="cardImg" src="" alt="">
-        <div class="img-fallback" id="fallback" style="display:none">
-          <div class="card-symbol" id="fallbackSymbol">☽</div>
-          <div id="fallbackName"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- 牌区域（动态生成） -->
+  <div class="cards-area" id="cardsArea"></div>
 
-  <!-- 牌名 -->
-  <div class="card-name" id="cardName"></div>
-  <div class="card-subtitle" id="cardSubtitle"></div>
-
-  <div class="divider">✦</div>
-
-  <!-- 含义解读 -->
-  <div class="meaning-box" id="meaningBox">
-    <h3>◈ 牌义解读</h3>
-    <p id="meaningText" style="color:var(--ink-light);opacity:0.5;font-style:italic">
-      点击上方按钮，抽取属于你的牌……
-    </p>
-  </div>
-
-  <!-- AI解读 -->
-  <div class="ai-box" id="aiBox">
-    <h3>◈ AI 神谕</h3>
-    <div id="aiText">
-      <p style="opacity:0.5;font-style:italic">AI 将在抽牌后为你进行深度解读……</p>
-    </div>
-  </div>
-
-
+  <!-- 解读区域（动态生成） -->
+  <div id="readingsArea"></div>
 
 </div>
 
 <div class="footer">✦ &nbsp; ARCANA &nbsp; ✦</div>
 
-
-<!-- ══════════════════════════════════════
-     JavaScript 部分：所有的交互逻辑
-══════════════════════════════════════ -->
 <script>
-
-// ── 塔罗牌数据库（22张大阿尔卡那）──
-// 每张牌包含：名字、英文名、图片URL、关键词、含义
+// ══════════════════════════════════════
+// 塔罗牌数据（22张大阿尔卡那）
+// ══════════════════════════════════════
 const CARDS = [
-  {
-    name: "愚者",
-    en: "The Fool",
-    symbol: "☀",
-    img: "https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg",
-    keywords: "新开始 · 冒险 · 纯真",
-    meaning: "愚者站在悬崖边缘，背负行囊，仰望天空。他代表一段崭新旅程的开始，带着无畏的勇气与纯真的心灵踏入未知。此刻，你正处于人生的转折点，内心有一股冲动呼唤你向前迈步。放下对结果的执念，相信直觉，拥抱这份未经雕琢的可能性。"
-  },
-  {
-    name: "魔术师",
-    en: "The Magician",
-    symbol: "☿",
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
-    keywords: "意志 · 技巧 · 创造",
-    meaning: "魔术师身前摆放着权杖、圣杯、宝剑与星币，他拥有一切所需的工具。这张牌提醒你：你已具备实现目标的全部资源与能力，缺的只是专注的意志与行动的勇气。现在是将想法付诸实践的最佳时机。"
-  },
-  {
-    name: "女祭司",
-    en: "The High Priestess",
-    symbol: "☽",
-    img: "https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg",
-    keywords: "直觉 · 神秘 · 内省",
-    meaning: "女祭司端坐于两根柱子之间，守护着神秘知识的门扉。她告诉你，此刻最需要的不是行动，而是聆听内心深处的声音。有些答案藏在潜意识之中，通过冥想、梦境或直觉方能触达。"
-  },
-  {
-    name: "女皇",
-    en: "The Empress",
-    symbol: "♀",
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg",
-    keywords: "丰盛 · 创造 · 母性",
-    meaning: "女皇安坐于繁茂的自然之中，象征生命力的充沛与物质的丰盈。这是一张关于创造、滋养与丰收的牌。你的努力正在生根发芽，你的付出将会得到回报。同时，不要忘记照顾自己，如同自然滋养万物一般温柔对待自身。"
-  },
-  {
-    name: "皇帝",
-    en: "The Emperor",
-    symbol: "♂",
-    img: "https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg",
-    keywords: "权威 · 秩序 · 稳固",
-    meaning: "皇帝端坐在石制宝座上，代表结构、规则与父性的权威。这张牌提示你需要建立更清晰的边界与秩序，或是寻求导师的指引。通过纪律与计划，混乱将被整合为力量。"
-  },
-  {
-    name: "教皇",
-    en: "The Hierophant",
-    symbol: "♉",
-    img: "https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg",
-    keywords: "传统 · 信仰 · 智慧",
-    meaning: "教皇是精神传承与传统智慧的守护者。这张牌的出现暗示你可能需要向有经验的人寻求指导，或是在某种信仰体系中寻找归属。遵循既有的路径，有时比独辟蹊径更能带来内心的平静。"
-  },
-  {
-    name: "恋人",
-    en: "The Lovers",
-    symbol: "♊",
-    img: "https://upload.wikimedia.org/wikipedia/commons/3/3a/TheLovers.jpg",
-    keywords: "选择 · 关系 · 价值观",
-    meaning: "恋人牌不仅关乎爱情，更代表一个深刻的抉择时刻。你正面临两条路的分叉，这个选择将反映你真实的价值观与内心渴望。无论选择哪条路，都需要对自己诚实。听从心灵深处最真实的声音。"
-  },
-  {
-    name: "战车",
-    en: "The Chariot",
-    symbol: "♋",
-    img: "https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
-    keywords: "意志 · 胜利 · 掌控",
-    meaning: "战车御手以坚定的意志驾驭两只方向各异的狮身人面兽。这张牌象征通过强大的意志力与自律克服障碍，走向胜利。你目前面临的挑战需要你整合内心的冲突，保持专注，不为外界所动。胜利属于意志坚定者。"
-  },
-  {
-    name: "力量",
-    en: "Strength",
-    symbol: "♌",
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
-    keywords: "勇气 · 耐心 · 温柔的力量",
-    meaning: "画面中的女子温柔地驯服了一头狮子，不靠蛮力，靠的是内在的平静与爱。真正的力量不是压制，而是慈悲地面对内心的恐惧与本能冲动。此刻，你有能力以温柔而坚定的方式化解眼前的困难。"
-  },
-  {
-    name: "隐士",
-    en: "The Hermit",
-    symbol: "♍",
-    img: "https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg",
-    keywords: "内省 · 孤独 · 智慧",
-    meaning: "隐士独自伫立山顶，手持灯笼照亮前路。这张牌呼唤你从喧嚣中退步，给自己一段独处与反思的时间。答案不在外界，而在你内心的智慧之光中。勇于走一段孤独但必要的内在旅程。"
-  },
-  {
-    name: "命运之轮",
-    en: "Wheel of Fortune",
-    symbol: "♃",
-    img: "https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg",
-    keywords: "转机 · 命运 · 循环",
-    meaning: "命运之轮永不停歇地旋转，象征生命中无可避免的起伏与变化。无论你现在处于高峰还是低谷，都是周期的一部分。顺势而为，而非对抗变化。一个新的循环即将开始，机会正在转向你。"
-  },
-  {
-    name: "正义",
-    en: "Justice",
-    symbol: "♎",
-    img: "https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg",
-    keywords: "公正 · 真相 · 因果",
-    meaning: "正义女神手持宝剑与天平，代表公正、诚实与因果法则。此刻你面临的处境正在被公平地审视。过去的行为将产生相应的结果，而诚实面对真相将帮助你做出最正确的决定。"
-  },
-  {
-    name: "倒吊人",
-    en: "The Hanged Man",
-    symbol: "♆",
-    img: "https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg",
-    keywords: "暂停 · 放手 · 新视角",
-    meaning: "倒吊人自愿以倒吊姿态悬挂，他的脸上带着平静甚至满足的微笑。这张牌代表主动的暂停——放下控制欲，以全新的视角审视现状。有时候，什么都不做，才是最有力的行动。放手，让生命自然流动。"
-  },
-  {
-    name: "死神",
-    en: "Death",
-    symbol: "♏",
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg",
-    keywords: "转化 · 结束 · 新生",
-    meaning: "死神骑着白马缓缓前行，但他带来的并非终结，而是蜕变。某个阶段正走向终点，为新的开始腾出空间。抗拒只会徒增痛苦，接受改变才能完成灵魂的蜕变。告别过去，才能拥抱真正属于你的未来。"
-  },
-  {
-    name: "节制",
-    en: "Temperance",
-    symbol: "♐",
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg",
-    keywords: "平衡 · 耐心 · 和谐",
-    meaning: "天使将水在两个圣杯间来回流动，象征平衡与融合。节制提醒你：过犹不及，找到中间道路才是智慧所在。无论是生活节奏、人际关系还是内心状态，都需要调和与耐心。和谐，源于对自身节律的尊重。"
-  },
-  {
-    name: "恶魔",
-    en: "The Devil",
-    symbol: "♑",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg",
-    keywords: "束缚 · 执念 · 阴影",
-    meaning: "恶魔牌揭示那些让你感到被困住的执念、习惯或恐惧。值得注意的是，图中被锁链束缚的两人，其实可以轻易摘下枷锁——束缚往往来自内心，而非外力。是时候直视那些你一直回避的阴影，并从中解放自己。"
-  },
-  {
-    name: "高塔",
-    en: "The Tower",
-    symbol: "♂",
-    img: "https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
-    keywords: "突变 · 觉醒 · 瓦解",
-    meaning: "高塔被闪电击中，人们从中跌落。这张牌代表突如其来的剧变与旧有结构的崩塌。虽然这过程令人震惊，但它往往揭示的是建立在不稳固基础上的虚幻。瓦解之后，才有真实的重建。动荡是觉醒的前奏。"
-  },
-  {
-    name: "星星",
-    en: "The Star",
-    symbol: "♒",
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",
-    keywords: "希望 · 治愈 · 指引",
-    meaning: "星星牌出现，如同暴风雨后的晴空。女神在月光下将生命之水注入大地与河流，象征治愈、更新与希望。无论你经历了怎样的黑暗，前方始终有星光指引。相信自己，相信未来，让心灵休憩并恢复力量。"
-  },
-  {
-    name: "月亮",
-    en: "The Moon",
-    symbol: "♓",
-    img: "https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",
-    keywords: "幻觉 · 潜意识 · 迷惑",
-    meaning: "月亮高悬，照亮了一条充满不确定性的路途。这张牌警示你：事情可能并非表面所见，你的恐惧与幻想正在左右你的判断。在作出决定前，请先拨开迷雾，回归清醒。梦境与直觉此刻格外活跃，记录它们。"
-  },
-  {
-    name: "太阳",
-    en: "The Sun",
-    symbol: "☉",
-    img: "https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",
-    keywords: "喜悦 · 成功 · 活力",
-    meaning: "太阳高照，孩童骑马欢笑，一切都在明亮的光辉中展现。这是塔罗中最积极的牌之一，象征喜悦、成功、生命力与真实的自我表达。你正处于或即将进入一段充满能量与光明的阶段，尽情拥抱这份礼物。"
-  },
-  {
-    name: "审判",
-    en: "Judgement",
-    symbol: "♇",
-    img: "https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg",
-    keywords: "觉醒 · 召唤 · 救赎",
-    meaning: "天使吹响号角，死者从棺中复生，迎接更高的召唤。审判牌代表一次深刻的内在觉醒与自我评估时刻。你正被召唤去回顾过去、宽恕自己，并以全新的身份重新出发。聆听那个更高的声音，它在呼唤你蜕变。"
-  },
-  {
-    name: "世界",
-    en: "The World",
-    symbol: "♄",
-    img: "https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",
-    keywords: "完成 · 整合 · 圆满",
-    meaning: "舞者在月桂花环中自由旋转，四角的象征守护着她。世界是大阿尔卡那的终点，象征一个完整周期的圆满结束。你所追求的目标正在达成，或即将达到。庆祝这份成就，同时为下一段旅程做好准备。"
-  }
+  { name:"愚者", en:"The Fool", symbol:"☀", img:"https://upload.wikimedia.org/wikipedia/commons/9/90/RWS_Tarot_00_Fool.jpg",
+    keywords:"新开始 · 冒险 · 纯真", reverseKeywords:"鲁莽 · 逃避 · 不成熟",
+    meaning:"愚者带着无畏的勇气踏上未知旅程，代表崭新开始与纯粹的可能性。放下执念，相信直觉，拥抱生命给你的惊喜。",
+    reverseMeaning:"愚者逆位警示你可能正在鲁莽行事，或因恐惧而逃避应有的改变。停下脚步，重新审视你的方向是否真的源于内心。" },
+  { name:"魔术师", en:"The Magician", symbol:"☿", img:"https://upload.wikimedia.org/wikipedia/commons/d/de/RWS_Tarot_01_Magician.jpg",
+    keywords:"意志 · 技巧 · 创造", reverseKeywords:"欺骗 · 才能浪费 · 操控",
+    meaning:"你已具备实现目标的全部资源与能力，缺的只是专注的意志与行动的勇气。现在是将想法付诸实践的最佳时机。",
+    reverseMeaning:"魔术师逆位暗示才华被浪费，或有人（包括自己）正在操控局面。警惕表里不一的情况，重新审视你的真实动机。" },
+  { name:"女祭司", en:"The High Priestess", symbol:"☽", img:"https://upload.wikimedia.org/wikipedia/commons/8/88/RWS_Tarot_02_High_Priestess.jpg",
+    keywords:"直觉 · 神秘 · 内省", reverseKeywords:"秘密 · 压抑直觉 · 表面化",
+    meaning:"此刻最需要的不是行动，而是聆听内心深处的声音。有些答案藏在潜意识之中，通过冥想、梦境或直觉方能触达。",
+    reverseMeaning:"女祭司逆位提示你正在压抑直觉，或有隐藏的信息尚未浮出水面。不要只看表象，深入探索内心被回避的感受。" },
+  { name:"女皇", en:"The Empress", symbol:"♀", img:"https://upload.wikimedia.org/wikipedia/commons/d/d2/RWS_Tarot_03_Empress.jpg",
+    keywords:"丰盛 · 创造 · 母性", reverseKeywords:"依赖 · 过度保护 · 创造力受阻",
+    meaning:"你的努力正在生根发芽，付出将得到回报。如同自然滋养万物，也要温柔地照顾自己，允许丰盛自然流入生命。",
+    reverseMeaning:"女皇逆位暗示创造力受阻，或存在过度依赖与控制的关系模式。检视你与滋养、被爱之间的关系，学会独立地爱自己。" },
+  { name:"皇帝", en:"The Emperor", symbol:"♂", img:"https://upload.wikimedia.org/wikipedia/commons/c/c3/RWS_Tarot_04_Emperor.jpg",
+    keywords:"权威 · 秩序 · 稳固", reverseKeywords:"专制 · 缺乏弹性 · 权威失控",
+    meaning:"通过纪律与计划，混乱将被整合为力量。建立清晰的边界与秩序，或寻求有经验的导师指引，是此刻的智慧选择。",
+    reverseMeaning:"皇帝逆位警示权威的滥用或过度控制，也可能是自身缺乏自律。审视你与权威和规则的关系，寻找灵活与结构之间的平衡。" },
+  { name:"教皇", en:"The Hierophant", symbol:"♉", img:"https://upload.wikimedia.org/wikipedia/commons/8/8d/RWS_Tarot_05_Hierophant.jpg",
+    keywords:"传统 · 信仰 · 智慧", reverseKeywords:"叛逆 · 打破规则 · 僵化",
+    meaning:"遵循既有的智慧传承，向有经验的人寻求指导，或在某种信仰体系中寻找归属，能带来内心深处的平静与方向感。",
+    reverseMeaning:"教皇逆位呼唤你打破不再适合你的传统束缚，勇于走出自己的道路。但需辨别——是真正的觉醒还是单纯的逃避？" },
+  { name:"恋人", en:"The Lovers", symbol:"♊", img:"https://upload.wikimedia.org/wikipedia/commons/3/3a/TheLovers.jpg",
+    keywords:"选择 · 关系 · 价值观", reverseKeywords:"错误选择 · 失衡关系 · 价值冲突",
+    meaning:"你正面临一个深刻的抉择时刻，这个选择将反映你真实的价值观与内心渴望。听从心灵深处最真实的声音，对自己诚实。",
+    reverseMeaning:"恋人逆位暗示关系中的失衡，或面临一个违背内心的选择。停下来问自己：你的决定真的基于爱与价值观，还是恐惧与逃避？" },
+  { name:"战车", en:"The Chariot", symbol:"♋", img:"https://upload.wikimedia.org/wikipedia/commons/9/9b/RWS_Tarot_07_Chariot.jpg",
+    keywords:"意志 · 胜利 · 掌控", reverseKeywords:"失控 · 挫败 · 强行推进",
+    meaning:"整合内心的冲突，保持专注，不为外界所动。以坚定的意志驾驭局面，胜利正在向你靠近。",
+    reverseMeaning:"战车逆位警示强行推进只会让事情失控。也许是时候放下执念，检视你是在真正掌控，还是在与生命的流动对抗。" },
+  { name:"力量", en:"Strength", symbol:"♌", img:"https://upload.wikimedia.org/wikipedia/commons/f/f5/RWS_Tarot_08_Strength.jpg",
+    keywords:"勇气 · 耐心 · 温柔的力量", reverseKeywords:"自我怀疑 · 软弱 · 内在冲突",
+    meaning:"真正的力量不是压制，而是慈悲地面对内心的恐惧。以温柔而坚定的方式化解眼前的困难，你比自己想象的更强大。",
+    reverseMeaning:"力量逆位揭示内在的自我怀疑与软弱感。此刻你的本能欲望可能正在压制你的理性。回到内心，重新找回温柔却坚定的核心力量。" },
+  { name:"隐士", en:"The Hermit", symbol:"♍", img:"https://upload.wikimedia.org/wikipedia/commons/4/4d/RWS_Tarot_09_Hermit.jpg",
+    keywords:"内省 · 孤独 · 智慧", reverseKeywords:"孤立 · 拒绝帮助 · 迷失",
+    meaning:"从喧嚣中退步，给自己一段独处与反思的时间。答案不在外界，而在你内心的智慧之光中。这段孤独是必要的旅程。",
+    reverseMeaning:"隐士逆位暗示过度孤立，或在该独处时反而逃向喧嚣。也可能是拒绝接受他人的帮助与智慧。学会在孤独与连结之间找到平衡。" },
+  { name:"命运之轮", en:"Wheel of Fortune", symbol:"♃", img:"https://upload.wikimedia.org/wikipedia/commons/3/3c/RWS_Tarot_10_Wheel_of_Fortune.jpg",
+    keywords:"转机 · 命运 · 循环", reverseKeywords:"厄运 · 抗拒改变 · 循环受阻",
+    meaning:"无论你现在处于高峰还是低谷，都是周期的一部分。顺势而为，一个新的循环正在开始，机会正在转向你。",
+    reverseMeaning:"命运之轮逆位暗示你正在抗拒生命的自然流动，或深陷一个重复的负面循环。放下对命运的对抗，才能让轮子重新转动。" },
+  { name:"正义", en:"Justice", symbol:"♎", img:"https://upload.wikimedia.org/wikipedia/commons/e/e0/RWS_Tarot_11_Justice.jpg",
+    keywords:"公正 · 真相 · 因果", reverseKeywords:"不公正 · 逃避责任 · 失衡",
+    meaning:"过去的行为将产生相应的结果，诚实面对真相将帮助你做出最正确的决定。因果法则在运作，公正终将到来。",
+    reverseMeaning:"正义逆位警示不公正的处境，或你正在逃避某种应承担的责任。审视你的内心：哪里出现了失衡？是否有需要被诚实面对的真相？" },
+  { name:"倒吊人", en:"The Hanged Man", symbol:"♆", img:"https://upload.wikimedia.org/wikipedia/commons/2/2b/RWS_Tarot_12_Hanged_Man.jpg",
+    keywords:"暂停 · 放手 · 新视角", reverseKeywords:"拖延 · 固执 · 无谓牺牲",
+    meaning:"主动暂停，放下控制欲，以全新的视角审视现状。有时候，什么都不做才是最有力的行动。放手，让生命自然流动。",
+    reverseMeaning:"倒吊人逆位暗示无谓的拖延或固执，或正在做无意义的牺牲。是时候从僵局中解脱，果断采取行动了。" },
+  { name:"死神", en:"Death", symbol:"♏", img:"https://upload.wikimedia.org/wikipedia/commons/d/d7/RWS_Tarot_13_Death.jpg",
+    keywords:"转化 · 结束 · 新生", reverseKeywords:"抗拒改变 · 停滞 · 腐朽",
+    meaning:"某个阶段正走向终点，为新的开始腾出空间。抗拒只会徒增痛苦，接受改变才能完成蜕变。告别过去，拥抱未来。",
+    reverseMeaning:"死神逆位揭示你对改变的极度抗拒，导致能量停滞腐朽。你牢牢抓住的那些东西，是否已经不再滋养你？是时候松手了。" },
+  { name:"节制", en:"Temperance", symbol:"♐", img:"https://upload.wikimedia.org/wikipedia/commons/f/f8/RWS_Tarot_14_Temperance.jpg",
+    keywords:"平衡 · 耐心 · 和谐", reverseKeywords:"失衡 · 极端 · 缺乏节制",
+    meaning:"找到中间道路才是智慧所在。无论是生活节奏、人际关系还是内心状态，都需要调和与耐心。和谐源于对自身节律的尊重。",
+    reverseMeaning:"节制逆位警示生活中某个领域出现了极端与失衡。过度沉溺或过度克制都在伤害你。重新审视你的节奏，找回内在的流动感。" },
+  { name:"恶魔", en:"The Devil", symbol:"♑", img:"https://upload.wikimedia.org/wikipedia/commons/5/55/RWS_Tarot_15_Devil.jpg",
+    keywords:"束缚 · 执念 · 阴影", reverseKeywords:"解脱 · 觉醒 · 挣脱枷锁",
+    meaning:"束缚往往来自内心，而非外力。是时候直视那些你一直回避的阴影，从让你感到困住的执念、习惯或恐惧中解放自己。",
+    reverseMeaning:"恶魔逆位是个好兆头——你正在觉醒，开始挣脱束缚你的枷锁。也许是某段关系、某种瘾癖或某个信念。自由近在咫尺。" },
+  { name:"高塔", en:"The Tower", symbol:"♂", img:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+    keywords:"突变 · 觉醒 · 瓦解", reverseKeywords:"避免灾难 · 拖延崩塌 · 内在动荡",
+    meaning:"建立在不稳固基础上的结构正在崩塌。虽然这过程令人震惊，但瓦解之后才有真实的重建。动荡是觉醒的前奏，接受它。",
+    reverseMeaning:"高塔逆位暗示你在努力避免一场必要的崩塌，或灾难以较温和的方式发生了。也可能是内心的动荡正在悄悄累积，需要正视。" },
+  { name:"星星", en:"The Star", symbol:"♒", img:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",
+    keywords:"希望 · 治愈 · 指引", reverseKeywords:"绝望 · 失去信念 · 幻灭",
+    meaning:"暴风雨之后的星光。无论你经历了怎样的黑暗，前方始终有光指引。相信未来，让心灵休憩，你正在被治愈。",
+    reverseMeaning:"星星逆位揭示对未来的绝望与幻灭。也许你曾寄予厚望的事情让你失落。但星光从未消失——是你暂时看不见它了。" },
+  { name:"月亮", en:"The Moon", symbol:"♓", img:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",
+    keywords:"幻觉 · 潜意识 · 迷惑", reverseKeywords:"困惑消散 · 真相浮现 · 释放恐惧",
+    meaning:"事情可能并非表面所见，恐惧与幻想正在左右你的判断。在作出决定前，拨开迷雾，回归清醒。梦境与直觉此刻格外活跃。",
+    reverseMeaning:"月亮逆位是个好消息——混乱开始消散，真相即将浮出水面。那些困扰你的恐惧和幻觉正在失去力量，清醒正在归来。" },
+  { name:"太阳", en:"The Sun", symbol:"☉", img:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",
+    keywords:"喜悦 · 成功 · 活力", reverseKeywords:"暂时受阻 · 过度乐观 · 活力受限",
+    meaning:"喜悦、成功与生命力正在向你涌来。你正处于或即将进入一段充满能量与光明的阶段，尽情拥抱这份礼物，展现真实的自我。",
+    reverseMeaning:"太阳逆位并非黑暗，而是光芒暂时被遮蔽。也许你过于执着于表面的快乐，却忽略了内在的真实感受。喜悦仍在，稍待云散。" },
+  { name:"审判", en:"Judgement", symbol:"♇", img:"https://upload.wikimedia.org/wikipedia/commons/d/dd/RWS_Tarot_20_Judgement.jpg",
+    keywords:"觉醒 · 召唤 · 救赎", reverseKeywords:"自我怀疑 · 拒绝召唤 · 无法放下",
+    meaning:"你正被召唤去回顾过去、宽恕自己，并以全新的身份重新出发。聆听那个更高的声音，它在呼唤你完成蜕变。",
+    reverseMeaning:"审判逆位显示你在拒绝内心的召唤，或因无法宽恕自己而陷入自我审判。放下那些沉重的评判，你值得重新开始。" },
+  { name:"世界", en:"The World", symbol:"♄", img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",
+    keywords:"完成 · 整合 · 圆满", reverseKeywords:"未完成 · 停滞 · 缺乏结局",
+    meaning:"你所追求的目标正在达成，一个完整的周期走向圆满。庆祝这份成就，感受整合的喜悦，为下一段更辽阔的旅程做好准备。",
+    reverseMeaning:"世界逆位暗示某件重要的事尚未完成，或你在最后关头停步不前。检视哪里还有悬而未决的事，完成它，才能真正迎来圆满。" }
 ];
 
-// ── 程序状态变量 ──
-let currentCard = null;  // 当前抽到的牌
-let isFlipped = false;   // 牌是否已翻开
-const DEEPSEEK_KEY = 'sk-642f6f55f9fe4555bbb26d082cd35523'; // DeepSeek API Key
-
-// 图片加载失败时显示符号替代（用 JS 绑定，避免 inline onerror 找不到函数）
-document.getElementById('cardImg').onerror = function() {
-  this.style.display = 'none';
-  const fallback = document.getElementById('fallback');
-  fallback.style.display = 'flex';
-  if (currentCard) {
-    document.getElementById('fallbackSymbol').textContent = currentCard.symbol;
-    document.getElementById('fallbackName').textContent = currentCard.name;
+// ══════════════════════════════════════
+// 牌阵配置
+// ══════════════════════════════════════
+const SPREADS = {
+  single: {
+    name: '单张牌',
+    desc: '当日指引 · 一张牌揭示今日核心能量',
+    count: 1,
+    positions: ['当日指引']
+  },
+  three: {
+    name: '三张牌阵',
+    desc: '过去 · 现在 · 未来 · 时间线全局洞察',
+    count: 3,
+    positions: ['过去', '现在', '未来']
+  },
+  celtic: {
+    name: '凯尔特十字',
+    desc: '最经典的10张牌阵 · 全面深入解析你的处境',
+    count: 10,
+    positions: ['现状', '挑战/阻碍', '远因/根基', '近因/过去', '可能结果', '近未来', '你的态度', '外部影响', '希望与恐惧', '最终结果']
   }
 };
 
-// ── 主函数：抽牌 ──
-function drawCard() {
-  // 1. 先把牌翻回背面
-  const flipper = document.getElementById('flipper');
-  flipper.classList.remove('flipped');
-  isFlipped = false;
+// ══════════════════════════════════════
+// 状态变量
+// ══════════════════════════════════════
+let currentSpread = 'single';
+let drawnCards = [];
+const DEEPSEEK_KEY = 'sk-642f6f55f9fe4555bbb26d082cd35523';
 
-  // 2. 随机抽一张牌
-  const randomIndex = Math.floor(Math.random() * CARDS.length);
-  currentCard = CARDS[randomIndex];
-
-  // 3. 清空上一次的解读
-  document.getElementById('cardName').textContent = '';
-  document.getElementById('cardSubtitle').textContent = '';
-  document.getElementById('meaningText').textContent = '正在揭示……';
-  document.getElementById('meaningText').style.fontStyle = 'italic';
-  document.getElementById('aiText').innerHTML = '';
-
-  // 4. 设置图片
-  const img = document.getElementById('cardImg');
-  const fallback = document.getElementById('fallback');
-  img.style.display = 'block';
-  fallback.style.display = 'none';
-  img.src = currentCard.img;
-  img.alt = currentCard.name;
-
-  // 5. 短暂延迟后翻牌（让动画重置生效）
-  setTimeout(() => {
-    flipper.classList.add('flipped');
-    isFlipped = true;
-
-    // 6. 翻牌动画结束后，显示牌名和含义
-    setTimeout(() => {
-      document.getElementById('cardName').textContent = currentCard.name;
-      document.getElementById('cardSubtitle').textContent =
-        currentCard.en + '  ·  ' + currentCard.keywords;
-      document.getElementById('meaningText').textContent = currentCard.meaning;
-      document.getElementById('meaningText').style.fontStyle = 'normal';
-
-      // 7. 直接调用 DeepSeek AI 解读
-        const userQuestion = document.getElementById('questionInput').value.trim();
-        getAIReading(currentCard, userQuestion);
-    }, 900); // 等翻牌动画（0.8s）结束
-
-  }, 300); // 重置动画的缓冲时间
+// ══════════════════════════════════════
+// 选择牌阵
+// ══════════════════════════════════════
+function selectSpread(type) {
+  currentSpread = type;
+  document.querySelectorAll('.spread-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('spreadDesc').textContent = SPREADS[type].desc;
+  // 清空上次结果
+  document.getElementById('cardsArea').innerHTML = '';
+  document.getElementById('readingsArea').innerHTML = '';
 }
 
-// ── 调用 DeepSeek API 获取 AI 解读 ──
-async function getAIReading(card, userQuestion) {
-  document.getElementById('aiText').innerHTML = `
-    <div class="ai-loading">
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <span style="margin-left:6px">神谕降临中……</span>
+// ══════════════════════════════════════
+// 随机抽牌（支持逆位）
+// ══════════════════════════════════════
+function pickCards(count) {
+  const shuffled = [...CARDS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, count).map(card => ({
+    ...card,
+    reversed: Math.random() < 0.3  // 30% 概率逆位
+  }));
+}
+
+// ══════════════════════════════════════
+// 主流程：开始占卜
+// ══════════════════════════════════════
+function drawCards() {
+  const spread = SPREADS[currentSpread];
+  drawnCards = pickCards(spread.count);
+
+  // 渲染牌面布局
+  renderCards(drawnCards, spread);
+
+  // 渲染文字解读
+  renderMeanings(drawnCards, spread);
+
+  // 调用 AI
+  const question = document.getElementById('questionInput').value.trim();
+  getAIReading(drawnCards, spread, question);
+
+  // 滚动到牌区域
+  setTimeout(() => {
+    document.getElementById('cardsArea').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 200);
+}
+
+// ══════════════════════════════════════
+// 渲染牌面
+// ══════════════════════════════════════
+function renderCards(cards, spread) {
+  const area = document.getElementById('cardsArea');
+  area.innerHTML = '';
+
+  if (currentSpread === 'single') {
+    area.innerHTML = `<div class="layout-single" id="cardLayout"></div>`;
+    const layout = document.getElementById('cardLayout');
+    layout.appendChild(makeCardEl(cards[0], 0, true));
+
+  } else if (currentSpread === 'three') {
+    area.innerHTML = `<div class="layout-three" id="cardLayout"></div>`;
+    const layout = document.getElementById('cardLayout');
+    cards.forEach((card, i) => {
+      const slot = document.createElement('div');
+      slot.className = 'card-slot';
+      slot.innerHTML = `<div class="slot-label">${spread.positions[i]}</div>`;
+      slot.appendChild(makeCardEl(card, i, false));
+      layout.appendChild(slot);
+    });
+
+  } else if (currentSpread === 'celtic') {
+    // 凯尔特十字布局（5列4行的网格，特定位置放牌）
+    area.innerHTML = `<div class="layout-celtic" id="cardLayout"></div>`;
+    const layout = document.getElementById('cardLayout');
+    // 网格位置（列,行）从0开始，共5列4行
+    // 牌序：0现状中心，1挑战交叉，2远因底，3近因左，4可能结果顶，5近未来右，6-9右列从下到上
+    const gridPos = [
+      [1,1], [1,1], [1,2], [0,1], [1,0], [2,1],
+      [4,3], [4,2], [4,1], [4,0]
+    ];
+    // 先铺满网格占位
+    for(let r=0;r<4;r++) for(let c=0;c<5;c++) {
+      const ph = document.createElement('div');
+      ph.style.visibility = 'hidden';
+      ph.style.height = '10px';
+      layout.appendChild(ph);
+    }
+    // 清掉重建（用绝对定位更简洁）
+    area.innerHTML = '';
+    area.style.position = 'relative';
+    area.style.maxWidth = '600px';
+    area.style.margin = '0 auto';
+
+    // 用flex三列布局：左列、中列、右列
+    area.innerHTML = `
+      <div style="display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;">
+        <div id="col-left" style="display:flex;flex-direction:column;align-items:center;gap:8px;"></div>
+        <div id="col-center" style="display:flex;flex-direction:column;align-items:center;gap:8px;"></div>
+        <div id="col-right" style="display:flex;flex-direction:column;align-items:center;gap:8px;"></div>
+      </div>
+    `;
+
+    // 中列：上(4)→中(0+1交叉)→下(2)
+    const colC = document.getElementById('col-center');
+    // 牌4：可能结果（顶）
+    colC.appendChild(makeCelticSlot(cards[4], 4, spread.positions[4]));
+    // 牌0+1：现状 + 挑战（叠加显示）
+    const crossWrap = document.createElement('div');
+    crossWrap.style.cssText = 'display:flex;gap:4px;align-items:center;';
+    crossWrap.appendChild(makeCelticSlot(cards[0], 0, spread.positions[0]));
+    crossWrap.appendChild(makeCelticSlot(cards[1], 1, spread.positions[1]));
+    colC.appendChild(crossWrap);
+    // 牌2：远因（底）
+    colC.appendChild(makeCelticSlot(cards[2], 2, spread.positions[2]));
+
+    // 左列：牌3（近因/过去）
+    const colL = document.getElementById('col-left');
+    colL.appendChild(makeCelticSlot(cards[3], 3, spread.positions[3]));
+
+    // 右列：牌5（近未来）
+    const colMid = document.getElementById('col-left');
+
+    // 近未来单独一列
+    const col5 = document.createElement('div');
+    col5.style.cssText = 'display:flex;flex-direction:column;align-items:center;gap:8px;';
+    col5.appendChild(makeCelticSlot(cards[5], 5, spread.positions[5]));
+    area.querySelector('div').insertBefore(col5, document.getElementById('col-right'));
+
+    // 右列：牌9→8→7→6（从上到下 = 最终→希望→外部→态度）
+    const colR = document.getElementById('col-right');
+    [9,8,7,6].forEach(i => colR.appendChild(makeCelticSlot(cards[i], i, spread.positions[i])));
+  }
+
+  // 依次翻牌动画
+  cards.forEach((card, i) => {
+    setTimeout(() => flipCard(i, card.reversed), 300 + i * 400);
+  });
+}
+
+function makeCelticSlot(card, index, label) {
+  const slot = document.createElement('div');
+  slot.className = 'celtic-slot';
+  const lbl = document.createElement('div');
+  lbl.className = 'slot-label';
+  lbl.textContent = label;
+  slot.appendChild(lbl);
+  slot.appendChild(makeCardEl(card, index, false));
+  return slot;
+}
+
+function makeCardEl(card, index, large) {
+  const scene = document.createElement('div');
+  scene.className = 'card-scene' + (large ? ' large' : '');
+  scene.innerHTML = `
+    <div class="card-flipper" id="flipper-${index}">
+      <div class="card-back"><div class="card-back-pattern">☽</div></div>
+      <div class="card-front">
+        <img id="img-${index}" src="${card.img}" alt="${card.name}">
+        <div class="img-fallback" id="fallback-${index}" style="display:none">
+          <div class="card-symbol">${card.symbol}</div>
+          <div>${card.name}</div>
+        </div>
+      </div>
     </div>
   `;
+  // 绑定图片加载失败
+  setTimeout(() => {
+    const img = document.getElementById('img-' + index);
+    if(img) img.onerror = function() {
+      this.style.display = 'none';
+      const fb = document.getElementById('fallback-' + index);
+      if(fb) fb.style.display = 'flex';
+    };
+  }, 100);
+  return scene;
+}
+
+function flipCard(index, reversed) {
+  const flipper = document.getElementById('flipper-' + index);
+  if(!flipper) return;
+  if(reversed) {
+    flipper.classList.add('reversed-flipped');
+  } else {
+    flipper.classList.add('flipped');
+  }
+}
+
+// ══════════════════════════════════════
+// 渲染文字解读
+// ══════════════════════════════════════
+function renderMeanings(cards, spread) {
+  const area = document.getElementById('readingsArea');
+  area.innerHTML = '';
+
+  const divider = document.createElement('div');
+  divider.className = 'divider';
+  divider.textContent = '✦';
+  area.appendChild(divider);
+
+  if(cards.length === 1) {
+    const card = cards[0];
+    const box = document.createElement('div');
+    box.className = 'meaning-box';
+    box.innerHTML = `
+      <h3>◈ ${card.name}${card.reversed ? '（逆位）' : ''} · 牌义解读</h3>
+      <p>${card.reversed ? card.reverseMeaning : card.meaning}</p>
+    `;
+    area.appendChild(box);
+  } else {
+    const wrap = document.createElement('div');
+    wrap.className = 'multi-meanings';
+    cards.forEach((card, i) => {
+      const m = document.createElement('div');
+      m.className = 'mini-meaning';
+      m.innerHTML = `
+        <h4>◈ ${spread.positions[i]} — ${card.name}${card.reversed ? '（逆位）' : ''}</h4>
+        <p>${card.reversed ? card.reverseMeaning : card.meaning}</p>
+      `;
+      wrap.appendChild(m);
+    });
+    area.appendChild(wrap);
+  }
+
+  // AI 占位
+  const aiBox = document.createElement('div');
+  aiBox.className = 'ai-box';
+  aiBox.id = 'aiBox';
+  aiBox.innerHTML = `
+    <h3>◈ AI 神谕</h3>
+    <div id="aiText">
+      <div class="ai-loading">
+        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+        <span style="margin-left:6px">神谕降临中……</span>
+      </div>
+    </div>
+  `;
+  area.appendChild(aiBox);
+}
+
+// ══════════════════════════════════════
+// DeepSeek AI 解读
+// ══════════════════════════════════════
+async function getAIReading(cards, spread, question) {
+  const cardsSummary = cards.map((c, i) =>
+    `${spread.positions[i]}：${c.name}（${c.reversed ? '逆位，关键词：' + c.reverseKeywords : '正位，关键词：' + c.keywords}）`
+  ).join('\n');
+
+  const prompt = `你是一位神秘而睿智的塔罗占卜师，用古典欧式风格进行解读，语言优美古雅，充满诗意与洞察力。
+
+用户使用了【${spread.name}】牌阵，抽到以下牌：
+${cardsSummary}
+${question ? '\n用户的问题是："' + question + '"' : ''}
+
+请结合牌阵结构和${question ? '用户的问题' : '整体能量'}，给出一段200字左右的整体性深度解读。
+要有针对性地串联各张牌之间的关系和故事，像是来自古老智慧的低语。直接输出解读内容，不要任何前缀或标题。`;
 
   try {
     const response = await fetch('https://api.deepseek.com/chat/completions', {
@@ -828,37 +637,23 @@ async function getAIReading(card, userQuestion) {
       },
       body: JSON.stringify({
         model: 'deepseek-chat',
-        max_tokens: 300,
+        max_tokens: 500,
         messages: [
-          {
-            role: 'system',
-            content: '你是一位神秘而睿智的塔罗占卜师，擅长用古典欧式风格进行占卜解读，语言优美古雅，充满诗意与洞察力。'
-          },
-          {
-            role: 'user',
-            content: `用户抽到了"${card.name}"（${card.en}）这张牌，关键词为：${card.keywords}。
-${userQuestion ? '用户的问题是："' + userQuestion + '"\n请结合这个问题和塔罗牌的含义，' : '请'}用100-150字给出一段充满诗意、神秘感和洞察力的个人化解读。
-像是来自古老智慧的低语，直接针对用户的处境给出洞见，不要重复牌义说明。直接输出解读内容，不要任何前缀。`
-          }
+          { role: 'system', content: '你是一位神秘睿智的塔罗占卜师，擅长用诗意古雅的中文进行占卜解读。' },
+          { role: 'user', content: prompt }
         ]
       })
     });
-
     const data = await response.json();
-
-    if (data.choices && data.choices[0]) {
-      document.getElementById('aiText').innerHTML =
-        `<p>${data.choices[0].message.content}</p>`;
-    } else if (data.error) {
-      document.getElementById('aiText').innerHTML =
-        `<p style="color:var(--red-accent);opacity:0.8">⚠ ${data.error.message}</p>`;
-    }
-  } catch (err) {
+    const text = data.choices?.[0]?.message?.content;
+    document.getElementById('aiText').innerHTML = text
+      ? `<p>${text}</p>`
+      : `<p style="color:var(--red-accent);opacity:.8">⚠ ${data.error?.message || '解读失败'}</p>`;
+  } catch(e) {
     document.getElementById('aiText').innerHTML =
-      '<p style="opacity:0.5;font-style:italic">连接失败，请检查网络连接。</p>';
+      '<p style="opacity:.5;font-style:italic">连接失败，请检查网络连接。</p>';
   }
 }
-
 </script>
 </body>
 </html>
